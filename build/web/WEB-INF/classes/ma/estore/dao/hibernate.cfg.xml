@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.connection.username">estore</property>
+    <property name="hibernate.connection.password">estore</property>
+    <mapping class="ma.estore.models.Commentaire"/>
+    <mapping class="ma.estore.models.Expedition"/>
+    <mapping class="ma.estore.models.Client"/>
+    <mapping class="ma.estore.models.Produit"/>
+    <mapping class="ma.estore.models.Image"/>
+    <mapping class="ma.estore.models.Compte"/>
+    <mapping class="ma.estore.models.Lignecommande"/>
+    <mapping class="ma.estore.models.Panier"/>
+    <mapping class="ma.estore.models.Promotion"/>
+    <mapping class="ma.estore.models.Categorie"/>
+    <mapping class="ma.estore.models.Wishlist"/>
+    <mapping class="ma.estore.models.Commande"/>
+    <mapping class="ma.estore.models.Adresse"/>
+  </session-factory>
+</hibernate-configuration>

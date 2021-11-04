@@ -1,0 +1,119 @@
+create user estore identified by estore;
+grant resource,connect to estore;
+
+create table compte(
+ 		login varchar2(50) primary key,
+ 		mdp varchar2(50),
+		role varchar2(50),
+		question varchar2(255),
+		reponse varchar2(255),
+		date_creation date);
+CREATE TABLE Client (
+  idc number(10) primary key,
+  nom varchar2(255) ,
+  prenom varchar(255) , 
+  email varchar2(50),
+  tel varchar2(30),
+  regDate date,
+  login varchar2(50),
+  foreign key(login) references compte(login ));
+
+
+Create table categorie(idcat number(10) primary key,
+			libelle varchar2(30),
+			description varchar2(200)
+			);
+
+
+
+CREATE TABLE Produit (
+  idP number(10) primary key,
+  idcat number(10),
+  libelle varchar2(255),
+  Marque varchar2(255),
+  prix number(12,2),
+  Description varchar2(1255),
+  fraisExpedition number(12,2),
+  disponibilite number(1),
+  qtestck number(4),
+  date_pub date,
+  foreign key(idcat) references categorie(idcat),
+  check (disponibilite in (0,1))
+);
+
+CREATE TABLE Image(
+idimg number(8) primary key,
+url varchar2(200),
+isprincipal number(1),
+check (isprincipal in (0,1)),
+idp number(8) references produit (idp)
+);
+
+CREATE TABLE PROMOTION(
+idprom number(8) primary key,
+idp number(8),
+date_debut date,
+date_fin date,
+taux number(2),
+foreign key (idp) references produit (idp)
+);
+
+CREATE TABLE wishlist (
+  idw  number(10) primary key,
+  idc number(10),
+  libelle varchar2(30),
+foreign key(idc ) references client(idc)
+) ;
+
+create table itemwishlist(
+idw number(8) ,
+idp number(8),
+foreign key(idw ) references wishlist(idw),
+foreign key(idp ) references Produit(idp),
+primary key (idw,idp)
+);
+
+CREATE TABLE Expedition(
+idex number(8)  primary key,
+moyen_expedition varchar2(100),
+numero_suivi varchar2(100),
+etat varchar2(100)
+);
+
+CREATE TABLE Commande(
+  idcmd number(10) primary key,
+  idc number(10),
+  datecmd date,
+  methode_pay varchar2(30),
+  etat varchar2(30),
+  idexp  number(8),
+foreign key (idexp) references expedition(idex),
+   foreign key(idc) references client(idc)
+);
+
+CREATE TABLE LigneCommande(
+idlc number(8) primary key,
+idcmd number(8) references commande(idcmd),
+idp number(8) references produit(idp),
+qte number(8),
+prix_achat number(10,2)
+);
+
+CREATE TABLE Commentaire(
+  idComm number(10) primary key,
+  idP number(10),
+  idcmd number(8) references commande(idcmd),
+  commentaire varchar2(255),
+  date_pub date,
+  foreign key(idP) references Produit(idP)
+);
+
+CREATE TABLE Adresse(
+ida number(8) primary key,
+adresse varchar2(100),
+ville varchar2(50),
+codepostale number(6),
+pays varchar2(50),
+idc number(8) references client (idc));
+alter table commande add (ida number(8) references adresse (ida));
+

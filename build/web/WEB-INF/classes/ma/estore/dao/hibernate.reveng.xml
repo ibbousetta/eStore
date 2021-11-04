@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="ESTORE"/>
+  <table-filter match-name="COMMANDE"/>
+  <table-filter match-name="LIGNECOMMANDE"/>
+  <table-filter match-name="ITEMWISHLIST"/>
+  <table-filter match-name="ADRESSE"/>
+  <table-filter match-name="IMAGE"/>
+  <table-filter match-name="WISHLIST"/>
+  <table-filter match-name="PROMOTION"/>
+  <table-filter match-name="COMPTE"/>
+  <table-filter match-name="COMMENTAIRE"/>
+  <table-filter match-name="CLIENT"/>
+  <table-filter match-name="EXPEDITION"/>
+  <table-filter match-name="CATEGORIE"/>
+  <table-filter match-name="PRODUIT"/>
+</hibernate-reverse-engineering>
